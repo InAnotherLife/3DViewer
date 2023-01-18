@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui_(std::make_unique<Ui::MainWindow>()),
-      opengl_window_(std::make_unique<opengl>()) {
+      opengl_window_(std::make_unique<OpenGL>()) {
   ui_->setupUi(this);
   this->setWindowTitle("3DViewer");
   setlocale(LC_ALL, "en_US.UTF-8");
@@ -35,10 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui_->comboBox_line_color->setCurrentIndex(tmp_color + 1);
     ui_->widget->line_color_ = tmp_color + 1;
   }
-  connect(this, &MainWindow::send_data, ui_->widget, &opengl::receive_data);
-  connect(ui_->widget, &opengl::send_line_color, this,
+  connect(this, &MainWindow::send_data, ui_->widget, &OpenGL::receive_data);
+  connect(ui_->widget, &OpenGL::send_line_color, this,
           &MainWindow::receive_line_color);
-  connect(ui_->widget, &opengl::send_vertices_color, this,
+  connect(ui_->widget, &OpenGL::send_vertices_color, this,
           &MainWindow::receive_vertices_color);
 }
 

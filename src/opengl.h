@@ -4,11 +4,11 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLWidget>
 
-class opengl : public QOpenGLWidget, public QOpenGLFunctions {
+class OpenGL : public QOpenGLWidget, public QOpenGLFunctions {
   Q_OBJECT
 
  public:
-  explicit opengl(QWidget *parent = nullptr);
+  explicit OpenGL(QWidget *parent = nullptr);
   void initializeGL() override;
   void resizeGL(int w, int h) override;
   void paintGL() override;

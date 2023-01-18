@@ -1,18 +1,18 @@
 #define GL_SILENCE_DEPRECATION
 #include "opengl.h"
 
-opengl::opengl(QWidget *parent) : QOpenGLWidget(parent) {}
+OpenGL::OpenGL(QWidget *parent) : QOpenGLWidget(parent) {}
 
-void opengl::initializeGL() {
+void OpenGL::initializeGL() {
   initializeOpenGLFunctions();
   glClearColor(1, 1, 1, 1);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_COLOR_MATERIAL);
 }
 
-void opengl::resizeGL(int w, int h) { glViewport(0, 0, w, h); }
+void OpenGL::resizeGL(int w, int h) { glViewport(0, 0, w, h); }
 
-void opengl::paintGL() {
+void OpenGL::paintGL() {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   if (projection_type_ == 0)
@@ -97,7 +97,7 @@ void opengl::paintGL() {
   glDisableClientState(GL_VERTEX_ARRAY);
 }
 
-void opengl::receive_data(double arr_coords_facets[],
+void OpenGL::receive_data(double arr_coords_facets[],
                           unsigned int arr_len_coords_facets) {
   input_arr_coords_facets_ = arr_coords_facets;
   input_len_arr_coords_facets_ = arr_len_coords_facets * 3;

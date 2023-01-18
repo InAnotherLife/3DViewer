@@ -52,7 +52,7 @@ class MainWindow : public QMainWindow {
 
  private:
   std::unique_ptr<Ui::MainWindow> ui_;
-  std::unique_ptr<opengl> opengl_window_;
+  std::unique_ptr<OpenGL> opengl_window_;
   data_t file_info_;
   double *arr_coords_facets_;
   unsigned int *arr_indexes_facets_;

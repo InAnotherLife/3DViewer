@@ -493,7 +493,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="opengl" name="widget" native="true">
+   <widget class="OpenGL" name="widget" native="true">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -687,7 +687,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>opengl</class>
+   <class>OpenGL</class>
    <extends>QWidget</extends>
    <header location="global">opengl.h</header>
    <container>1</container>
