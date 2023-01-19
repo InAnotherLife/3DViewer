@@ -30,10 +30,10 @@ class MainWindow : public QMainWindow {
   void on_pushButton_open_file_clicked();
   void on_pushButton_scale_plus_clicked();
   void on_pushButton_scale_minus_clicked();
-  void on_spinBox_line_width_valueChanged(int arg);
-  void on_comboBox_line_color_currentIndexChanged(int index);
+  void on_spinBox_edges_thickness_valueChanged(int arg);
+  void on_comboBox_edges_color_currentIndexChanged(int index);
   void on_comboBox_background_color_currentIndexChanged(int index);
-  void on_comboBox_line_type_currentIndexChanged(int index);
+  void on_comboBox_edges_type_currentIndexChanged(int index);
   void on_pushButton_move_x_minus_clicked();
   void on_pushButton_move_x_plus_clicked();
   void on_pushButton_move_y_plus_clicked();
@@ -43,11 +43,10 @@ class MainWindow : public QMainWindow {
   void on_pushButton_rotate_x_minus_clicked();
   void on_pushButton_rotate_x_plus_clicked();
   void on_comboBox_vertices_type_currentIndexChanged(int index);
-  void on_spinBox_vertices_wight_valueChanged(int arg);
+  void on_spinBox_vertices_thickness_valueChanged(int arg);
   void on_comboBox_vertices_color_currentIndexChanged(int index);
   void on_comboBox_projection_type_currentIndexChanged(int index);
-  void receive_line_color(int line_color);
-  void receive_vertices_color(int vertices_color);
+  void receive_edges_color(int color);
   void on_pushButton_set_default_settings_clicked();
 
  private:

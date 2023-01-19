@@ -29,17 +29,15 @@ MainWindow::MainWindow(QWidget *parent)
   scale_value_ = 0.1;
   move_value_ = 0.7;
   rotate_value_ = 1.5;
-  if (ui_->comboBox_line_color->currentIndex() ==
+  if (ui_->comboBox_edges_color->currentIndex() ==
       ui_->comboBox_background_color->currentIndex()) {
     int tmp_color = ui_->comboBox_background_color->currentIndex();
-    ui_->comboBox_line_color->setCurrentIndex(tmp_color + 1);
-    ui_->widget->line_color_ = tmp_color + 1;
+    ui_->comboBox_edges_color->setCurrentIndex(tmp_color + 1);
+    ui_->widget->edges_color_ = tmp_color + 1;
   }
   connect(this, &MainWindow::send_data, ui_->widget, &OpenGL::receive_data);
-  connect(ui_->widget, &OpenGL::send_line_color, this,
-          &MainWindow::receive_line_color);
-  connect(ui_->widget, &OpenGL::send_vertices_color, this,
-          &MainWindow::receive_vertices_color);
+  connect(ui_->widget, &OpenGL::send_edges_color, this,
+          &MainWindow::receive_edges_color);
 }
 
 MainWindow::~MainWindow() {
@@ -195,8 +193,8 @@ void MainWindow::on_comboBox_vertices_type_currentIndexChanged(int index) {
   ui_->widget->update();
 }
 
-void MainWindow::on_spinBox_vertices_wight_valueChanged(int arg) {
-  ui_->widget->vertices_wight_ = arg;
+void MainWindow::on_spinBox_vertices_thickness_valueChanged(int arg) {
+  ui_->widget->vertices_thickness_ = arg;
   ui_->widget->update();
 }
 
@@ -205,13 +203,13 @@ void MainWindow::on_comboBox_vertices_color_currentIndexChanged(int index) {
   ui_->widget->update();
 }
 
-void MainWindow::on_spinBox_line_width_valueChanged(int arg) {
-  ui_->widget->line_width_ = arg;
+void MainWindow::on_spinBox_edges_thickness_valueChanged(int arg) {
+  ui_->widget->edges_thickness_ = arg;
   ui_->widget->update();
 }
 
-void MainWindow::on_comboBox_line_color_currentIndexChanged(int index) {
-  ui_->widget->line_color_ = index;
+void MainWindow::on_comboBox_edges_color_currentIndexChanged(int index) {
+  ui_->widget->edges_color_ = index;
   ui_->widget->update();
 }
 
@@ -220,16 +218,12 @@ void MainWindow::on_comboBox_background_color_currentIndexChanged(int index) {
   ui_->widget->update();
 }
 
-void MainWindow::receive_line_color(int line_color) {
-  ui_->comboBox_line_color->setCurrentIndex(line_color);
+void MainWindow::receive_edges_color(int color) {
+  ui_->comboBox_edges_color->setCurrentIndex(color);
 }
 
-void MainWindow::receive_vertices_color(int vertices_color) {
-  ui_->comboBox_vertices_color->setCurrentIndex(vertices_color);
-}
-
-void MainWindow::on_comboBox_line_type_currentIndexChanged(int index) {
-  ui_->widget->line_type_ = index;
+void MainWindow::on_comboBox_edges_type_currentIndexChanged(int index) {
+  ui_->widget->edges_type_ = index;
   ui_->widget->update();
 }
 
@@ -244,14 +238,15 @@ void MainWindow::SaveSettings() {
                     ui_->comboBox_projection_type->currentIndex());
   settings.setValue("background_color",
                     ui_->comboBox_background_color->currentIndex());
-  settings.setValue("line_type", ui_->comboBox_line_type->currentIndex());
-  settings.setValue("line_color", ui_->comboBox_line_color->currentIndex());
-  settings.setValue("line_width", ui_->spinBox_line_width->value());
+  settings.setValue("edges_type", ui_->comboBox_edges_type->currentIndex());
+  settings.setValue("edges_color", ui_->comboBox_edges_color->currentIndex());
+  settings.setValue("edges_thickness", ui_->spinBox_edges_thickness->value());
   settings.setValue("vertices_type",
                     ui_->comboBox_vertices_type->currentIndex());
   settings.setValue("vertices_color",
                     ui_->comboBox_vertices_color->currentIndex());
-  settings.setValue("vertices_wight", ui_->spinBox_vertices_wight->value());
+  settings.setValue("vertices_thickness",
+                    ui_->spinBox_vertices_thickness->value());
 }
 
 void MainWindow::LoadSettings() {
@@ -260,17 +255,18 @@ void MainWindow::LoadSettings() {
       settings.value("type_projection", "").toInt());
   ui_->comboBox_background_color->setCurrentIndex(
       settings.value("background_color", "").toInt());
-  ui_->comboBox_line_type->setCurrentIndex(
-      settings.value("line_type", "").toInt());
-  ui_->comboBox_line_color->setCurrentIndex(
-      settings.value("line_color", "").toInt());
-  ui_->spinBox_line_width->setValue(settings.value("line_width", "").toInt());
+  ui_->comboBox_edges_type->setCurrentIndex(
+      settings.value("edges_type", "").toInt());
+  ui_->comboBox_edges_color->setCurrentIndex(
+      settings.value("edges_color", "").toInt());
+  ui_->spinBox_edges_thickness->setValue(
+      settings.value("edges_thickness", "").toInt());
   ui_->comboBox_vertices_type->setCurrentIndex(
       settings.value("vertices_type", "").toInt());
   ui_->comboBox_vertices_color->setCurrentIndex(
       settings.value("vertices_color", "").toInt());
-  ui_->spinBox_vertices_wight->setValue(
-      settings.value("vertices_wight", "").toInt());
+  ui_->spinBox_vertices_thickness->setValue(
+      settings.value("vertices_thickness", "").toInt());
 }
 
 void MainWindow::on_pushButton_set_default_settings_clicked() {
@@ -284,20 +280,20 @@ void MainWindow::on_pushButton_set_default_settings_clicked() {
   rotate_y_minus_ = 0;
   rotate_x_plus_ = 0;
   rotate_x_minus_ = 0;
-  ui_->widget->line_type_ = 0;
-  ui_->comboBox_line_type->setCurrentIndex(0);
-  ui_->widget->line_width_ = 1;
-  ui_->spinBox_line_width->setValue(1);
-  ui_->widget->line_color_ = 1;
-  ui_->comboBox_line_color->setCurrentIndex(1);
+  ui_->widget->edges_type_ = 0;
+  ui_->comboBox_edges_type->setCurrentIndex(0);
+  ui_->widget->edges_thickness_ = 1;
+  ui_->spinBox_edges_thickness->setValue(1);
+  ui_->widget->edges_color_ = 1;
+  ui_->comboBox_edges_color->setCurrentIndex(1);
   ui_->widget->background_color_ = 0;
   ui_->comboBox_background_color->setCurrentIndex(0);
   ui_->widget->vertices_color_ = 0;
   ui_->comboBox_vertices_color->setCurrentIndex(0);
   ui_->widget->vertices_type_ = 0;
   ui_->comboBox_vertices_type->setCurrentIndex(0);
-  ui_->widget->vertices_wight_ = 1;
-  ui_->spinBox_vertices_wight->setValue(1);
+  ui_->widget->vertices_thickness_ = 1;
+  ui_->spinBox_vertices_thickness->setValue(1);
   ui_->widget->projection_type_ = 0;
   ui_->comboBox_projection_type->setCurrentIndex(0);
   ui_->widget->update();
