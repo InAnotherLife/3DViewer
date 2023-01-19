@@ -1,8 +1,8 @@
 CC=gcc
 PROJECT=3dviewer
-SOURCES=./3dviewer.c ./matrix.c
-HEADERS=./3dviewer.h
-OBJECTS=3dviewer.o matrix.o
+SOURCES=./parser.c ./matrix.c
+HEADERS=./parser.h
+OBJECTS=parser.o matrix.o
 OUTTESTSNAME=tests
 REPORTNAME=Report
 BUILDNAME=Build

@@ -9,9 +9,9 @@
 #include <QSettings>
 #include <memory>
 
-#include "3dviewer.h"
 #include "matrix.h"
 #include "opengl.h"
+#include "parser.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -3,6 +3,7 @@
 
 OpenGL::OpenGL(QWidget *parent) : QOpenGLWidget(parent) {}
 
+// Начальные настройки изображения
 void OpenGL::initializeGL() {
   initializeOpenGLFunctions();
   glClearColor(1, 1, 1, 1);
@@ -10,8 +11,10 @@ void OpenGL::initializeGL() {
   glEnable(GL_COLOR_MATERIAL);
 }
 
+// Изменение размеров окна
 void OpenGL::resizeGL(int w, int h) { glViewport(0, 0, w, h); }
 
+// Выстраивает каждый кадр изображения
 void OpenGL::paintGL() {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -79,7 +82,6 @@ void OpenGL::paintGL() {
     glLineStipple(1, 100);
   }
   glLineWidth(line_width_);
-
   if (line_color_ == 0)
     glColor3f(1, 1, 1);
   else if (line_color_ == 1)
@@ -98,7 +100,7 @@ void OpenGL::paintGL() {
 }
 
 void OpenGL::receive_data(double arr_coords_facets[],
-                          unsigned int arr_len_coords_facets) {
+                          unsigned int len_arr_coords_facets) {
   input_arr_coords_facets_ = arr_coords_facets;
-  input_len_arr_coords_facets_ = arr_len_coords_facets * 3;
+  input_len_arr_coords_facets_ = len_arr_coords_facets * 3;
 }

@@ -1,7 +1,7 @@
 #include <check.h>
 
-#include "3dviewer.h"
 #include "matrix.h"
+#include "parser.h"
 
 START_TEST(create_matrix_1) {
   matrix_t A = create_matrix(1, 1);

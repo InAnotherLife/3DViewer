@@ -12,14 +12,14 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    3dviewer.c \
+    parser.c \
     mainwindow.cc \
     matrix.c \
     opengl.cc
 
 HEADERS += \
     mainwindow.h \
-    3dviewer.h \
+    parser.h \
     matrix.h \
     opengl.h
 

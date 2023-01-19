@@ -1,4 +1,4 @@
-#include "3dviewer.h"
+#include "parser.h"
 
 void get_file_info(FILE *file_read, data_t *data) {
   char str[MAX_LEN_STR];
