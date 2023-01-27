@@ -386,7 +386,7 @@
      <item>
       <widget class="QLabel" name="label_5">
        <property name="text">
-        <string>Common information</string>
+        <string>About file</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

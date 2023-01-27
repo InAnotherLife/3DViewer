@@ -24,10 +24,10 @@ typedef struct data_str {
 
 void get_file_info(FILE *fileRead, data_t *data);
 void get_str(char *fileName, matrix_t *matr, data_t *data, unsigned int *arr);
-void fill_matrix_or_array(char *str, matrix_t *matr, data_t *data,
-                          unsigned int *arr);
-void get_coords_facets(matrix_t *matr, data_t *data, const unsigned int *arr1,
-                       double *arr2);
+void fill_matrix(char *str, matrix_t *matr, data_t *data);
+void fill_array(char *str, data_t *data, unsigned int *arr);
+void get_coords_facets(matrix_t *matr, data_t *data, const unsigned int *arr_1,
+                       double *arr_2);
 int is_num(double num);
 
 #ifdef __cplusplus

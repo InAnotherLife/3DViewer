@@ -82,7 +82,6 @@ void MainWindow::on_pushButton_open_file_clicked() {
     ui_->count_vertexes->setText(
         QString::number(file_info_.count_rows_vertexes));
     ui_->count_facets->setText(QString::number(file_info_.count_rows_facets));
-
     emit send_data(arr_coords_facets_, file_info_.count_indexes_facets);
     ui_->widget->update();
   }
